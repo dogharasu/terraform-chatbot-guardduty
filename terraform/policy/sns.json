@@ -1,0 +1,36 @@
+{
+    "Version": "2008-10-17",
+    "Id": "__default_policy_ID",
+    "Statement": [
+      {
+        "Effect": "Allow",
+        "Principal": {
+          "AWS": "*"
+        },
+        "Action": [
+          "SNS:GetTopicAttributes",
+          "SNS:SetTopicAttributes",
+          "SNS:AddPermission",
+          "SNS:RemovePermission",
+          "SNS:DeleteTopic",
+          "SNS:Subscribe",
+          "SNS:ListSubscriptionsByTopic",
+          "SNS:Publish"
+        ],
+        "Resource": "arn:aws:sns:ap-northeast-1:＜AWSアカウント番号＞:sns-topic-chatbot-guardduty",
+        "Condition": {
+          "StringEquals": {
+            "AWS:SourceOwner": "＜AWSアカウント番号＞"
+          }
+        }
+      },
+      {
+        "Effect": "Allow",
+        "Principal": {
+          "Service": "events.amazonaws.com"
+        },
+        "Action": "sns:Publish",
+        "Resource": "arn:aws:sns:ap-northeast-1:＜AWSアカウント番号＞:sns-topic-chatbot-guardduty"
+      }
+    ]
+}
